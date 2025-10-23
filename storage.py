@@ -17,7 +17,6 @@ def load_expenses():
     except Exception as e:
         print(f"Ошибка чтения файла: {e}")
         return []
-
 def save_expenses(expenses):
     try:
         with open(DATA_FILE, 'w') as f:
