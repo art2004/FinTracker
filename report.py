@@ -11,4 +11,5 @@ def generate_category_report():
     report = "Отчет по категориям:\n"
     for category in categories.values():
         report += f"{category.name}: {category.total:.2f} руб.\n"
+
     return report
