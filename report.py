@@ -1,6 +1,6 @@
 from fintracker.storage import load_expenses
 from fintracker.models import Category
-
+""""""
 def generate_category_report():
     expenses = load_expenses()
     categories = {}
