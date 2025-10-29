@@ -1,7 +1,7 @@
 from fintracker.storage import load_expenses, save_expenses
 from fintracker.models import Expense
 from datetime import datetime
-from fintracker.report import generate_category_report
+from fintracker.report import generate_category_report, generate_monthly_report
 
 def add_expense(category: str, amount: float):
     if amount <= 0:
@@ -22,4 +22,6 @@ def view_expenses(period: str):
 def generate_report(report_type: str):
     if report_type == 'категории':
         return generate_category_report()
+    elif report_type == 'месячный':
+        return generate_monthly_report()
     return "Неизвестный тип отчета"

@@ -3,7 +3,8 @@ from fintracker.commands import add_expense, view_expenses, generate_report
 def main():
     parser = argparse.ArgumentParser(description="Трекер личных финансов")
     parser.add_argument('--добавить', nargs=2, metavar=('КАТЕГОРИЯ', 'СУММА'), help='Добавить расход: категория сумма')
-    parser.add_argument('--отчет', choices=['категории'], help='Сгенерировать отчет: категории')
+    parser.add_argument('--отчет', choices=['категории', 'месячный'],
+                        help='Сгенерировать отчет: категории или месячный')
     parser.add_argument('--просмотр', choices=['день', 'месяц', 'все'], help='Просмотреть расходы: день, месяц или все')
     args = parser.parse_args()
     try:
