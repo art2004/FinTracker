@@ -4,6 +4,8 @@ from datetime import datetime
 from fintracker.report import generate_category_report
 
 def add_expense(category: str, amount: float):
+    if amount <= 0:
+        raise ValueError("Сумма должна быть положительной")
     expenses = load_expenses()
     expense = Expense(category=category, amount=amount, date=datetime.now().isoformat())
     expenses.append(expense)
