@@ -19,9 +19,22 @@ def view_expenses(period: str):
         return [e.to_dict() for e in expenses if datetime.fromisoformat(e.date).date().month == today.month]
     return [e.to_dict() for e in expenses]
 
-def generate_report(report_type: str):
+def generate_report(report_type: str, output_file: str = None):
     if report_type == 'категории':
-        return generate_category_report()
+        report = generate_category_report()
     elif report_type == 'месячный':
-        return generate_monthly_report()
-    return "Неизвестный тип отчета"
+        report = generate_monthly_report()
+    else:
+        report = "Неизвестный тип отчета"
+
+    if output_file:
+        try:
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.write(report)
+            print(f"Отчет сохранён в {output_file}")
+        except Exception as e:
+            print(f"Ошибка при записи файла: {e}")
+    else:
+        print(report)
+
+    return report

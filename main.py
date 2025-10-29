@@ -6,6 +6,7 @@ def main():
     parser.add_argument('--отчет', choices=['категории', 'месячный'],
                         help='Сгенерировать отчет: категории или месячный')
     parser.add_argument('--просмотр', choices=['день', 'месяц', 'все'], help='Просмотреть расходы: день, месяц или все')
+    parser.add_argument('--вывод', help='Файл для сохранения отчета')
     args = parser.parse_args()
     try:
         if args.добавить:
@@ -17,10 +18,10 @@ def main():
             for expense in expenses:
                 print(f"{expense['date']} - {expense['category']}: {expense['amount']} руб.")
         if args.отчет:
-            report = generate_report(args.отчет)
-            print(report)
+            report = generate_report(args.отчет, args.вывод)
     except ValueError as e:
         print(f"Ошибка: Неверный формат суммы - {e}")
-
+    except Exception as e:
+        print(f"Ошибка: {e}")
 if __name__ == "__main__":
     main()
