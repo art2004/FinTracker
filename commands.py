@@ -1,9 +1,22 @@
+"""
+Обработчики команд для CLI.
+"""
 from fintracker.storage import load_expenses, save_expenses
 from fintracker.models import Expense
 from datetime import datetime
 from fintracker.report import generate_category_report, generate_monthly_report
 
 def add_expense(category: str, amount: float):
+    """
+    Добавляет новый расход.
+
+    Args:
+        category (str): Категория расхода.
+        amount (float): Сумма (должна быть > 0).
+
+    Raises:
+        ValueError: Если сумма <= 0.
+    """
     if amount <= 0:
         raise ValueError("Сумма должна быть положительной")
     expenses = load_expenses()
@@ -11,6 +24,15 @@ def add_expense(category: str, amount: float):
     expenses.append(expense)
     save_expenses(expenses)
 def view_expenses(period: str):
+    """
+    Возвращает список расходов за указанный период.
+
+    Args:
+        period (str): 'день', 'месяц' или 'все'.
+
+    Returns:
+        list: Список словарей с данными расходов.
+    """
     expenses = load_expenses()
     today = datetime.now().date()
     if period == 'день':
@@ -20,6 +42,13 @@ def view_expenses(period: str):
     return [e.to_dict() for e in expenses]
 
 def generate_report(report_type: str, output_file: str = None):
+    """
+    Генерирует отчёт и выводит его или сохраняет в файл.
+
+    Args:
+        report_type (str): 'категории' или 'месячный'.
+        output_file (str, optional): Путь к файлу для сохранения.
+    """
     if report_type == 'категории':
         report = generate_category_report()
     elif report_type == 'месячный':

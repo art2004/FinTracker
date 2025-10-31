@@ -1,7 +1,17 @@
+"""
+Модуль для генерации текстовых отчётов.
+"""
 from fintracker.storage import load_expenses
 from fintracker.models import Category
 from datetime import datetime
+
 def generate_category_report():
+    """
+    Генерирует отчёт по категориям расходов (за всё время).
+
+    Returns:
+        str: Многострочный текст отчёта с суммами по каждой категории.
+    """
     expenses = load_expenses()
     categories = {}
     for expense in expenses:
@@ -14,6 +24,12 @@ def generate_category_report():
     return report
 
 def generate_monthly_report():
+    """
+    Генерирует отчёт по месяцам.
+
+    Returns:
+        str: Текст отчёта с суммами по месяцам в формате YYYY-MM.
+    """
     expenses = load_expenses()
     months = {}
     for expense in expenses:

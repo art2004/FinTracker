@@ -1,6 +1,10 @@
 import argparse
 from fintracker.commands import add_expense, view_expenses, generate_report
 def main():
+    """
+    Основная функция CLI-программы.
+    Обрабатывает аргументы и вызывает соответствующие команды.
+    """
     parser = argparse.ArgumentParser(description="Трекер личных финансов")
     parser.add_argument('--добавить', nargs=2, metavar=('КАТЕГОРИЯ', 'СУММА'), help='Добавить расход: категория сумма')
     parser.add_argument('--отчет', choices=['категории', 'месячный'],
