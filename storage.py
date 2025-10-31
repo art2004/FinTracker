@@ -43,7 +43,7 @@ def save_expenses(expenses: List[Expense]) -> None:
         Exception: При ошибке записи выводится сообщение, но программа не падает.
     """
     try:
-        with open(DATA_FILE, 'w') as f:
+        with open(DATA_FILE, 'w', encoding='utf-8') as f:
             json.dump([expense.to_dict() for expense in expenses], f, indent=2, ensure_ascii=False)
     except Exception as e:
         print(f"Ошибка сохранения файла: {e}")
