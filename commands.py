@@ -67,3 +67,4 @@ def generate_report(report_type: str, output_file: str = None):
         print(report)
 
     return report
+
