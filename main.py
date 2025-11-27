@@ -1,5 +1,8 @@
 import argparse
 from fintracker.commands import add_expense, view_expenses, generate_report
+from fintracker.database import init_db
+
+
 def main():
     """
     Основная функция CLI-программы.
@@ -28,4 +31,5 @@ def main():
     except Exception as e:
         print(f"Ошибка: {e}")
 if __name__ == "__main__":
+    init_db()
     main()
